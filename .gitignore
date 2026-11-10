@@ -1,0 +1,3 @@
+# 各自のDB接続設定
+/config/database.local.php
+/.env
