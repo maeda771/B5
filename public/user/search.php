@@ -11,7 +11,16 @@
     <title>検索画面</title>
 </head>
 <body>
+    <!-- ヘッダーの表示 -->
+    <?php 
+    require __DIR__ . '/../../app/views/layouts/header.php';
+    renderHeader('検索');
+     ?>
 
+     <main>
+
+     
+     </main>
 
     <?php 
     // フッターの表示

@@ -10,7 +10,10 @@
     <title>商品一覧画面</title>
 </head>
 <body>
-
+    <?php 
+    require __DIR__ . '/../../app/views/layouts/header.php';
+    renderHeader('トップス','back','index.php');
+     ?>
 
     <?php 
     // フッターの表示

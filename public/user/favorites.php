@@ -10,7 +10,16 @@
     <title></title>
 </head>
 <body>
+    <!-- ヘッダーの表示 -->
+    <?php 
+    require __DIR__ . '/../../app/views/layouts/header.php';
+    renderHeader('お気に入り');
+     ?>
 
+     <main>
+
+     
+     </main>
 
     <?php 
     // フッターの表示

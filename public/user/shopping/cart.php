@@ -10,6 +10,16 @@
     <title>カート画面</title>
 </head>
 <body>
+    <!-- ヘッダーの表示 -->
+    <?php 
+    require __DIR__ . '/../../../app/views/layouts/header.php';
+    renderHeader('カート');
+     ?>
+
+     <main>
+
+     
+     </main>
 
 
     <?php 
