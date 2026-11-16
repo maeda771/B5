@@ -36,3 +36,105 @@ body{
 .form-error{
 
 } */
+
+
+/* フッターの設定 */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: #F9F7F3;
+    border-top: 1px solid #DEDBD6;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.footer nav {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 131px;
+    margin: 0 auto;
+}
+.footer nav a {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 0;
+    padding: 14px 0;
+    box-sizing: border-box;
+
+    text-decoration: none;
+    color: #66625D;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+}
+/* アイコン */
+.footer nav a i {
+    font-size: 43px;
+}
+
+.footer nav a.is-current {
+    color: #5E935B;
+}
+/* PCでは文字を少し大きくする */
+@media (min-width: 768px) {
+    /*下表示 
+    
+    .footer nav {
+        min-height: 88px;
+    }
+
+    .footer nav a {
+        font-size: 16px;
+        padding: 12px 0;
+        gap: 6px;
+    }
+
+    .footer nav a i {
+        font-size: 30px;
+    } */
+
+
+    /* 横表示 */
+    .footer {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 120px;
+
+        border-top: none;
+        border-right: 1px solid #DEDBD6;
+        padding-bottom: 0;
+        overflow-y: auto;
+    }
+
+    .footer nav {
+        flex-direction: column;
+        width: 100%;
+        max-width: none;
+        min-height: 0;
+        padding: 24px 0;
+    }
+
+    .footer nav a {
+        flex: none;
+        min-height: 90px;
+        padding: 25px 4px;
+        gap: 8px;
+        font-size: 16px;
+    }
+
+    .footer nav a i {
+        font-size: 30px;
+    }
+}
