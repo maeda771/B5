@@ -1,0 +1,148 @@
+
+body{
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* ログイン枠 */
+.login-container{
+    width: 100%;
+    max-width: 450px;
+
+    background-color: #f8f8f8;
+
+    border: 2px solid #cfcfcf;
+    border-radius: 30px;
+
+    padding: 20px 25px 40px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* タイトル */
+h1{
+    text-align: left;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.title-line{
+    width: 100%;
+    height: 1px;
+    background: #333;
+    margin-bottom: 30px;
+}
+
+.password-area{
+    position: relative;
+}
+
+.eye-btn{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    color: #999;
+    font-size: 20px;
+    padding: 0;
+}
+
+
+/* パスワード忘れ */
+.forgot-password{
+    text-align: right;
+    margin-bottom: 35px;
+}
+
+.forgot-password a{
+    color: #5E935B;
+    text-decoration: none;
+}
+
+
+/* 新規会員登録ボタン */
+.register-btn{
+    width: 100%;
+
+    padding: 15px;
+
+    border: 2px solid #5E935B;
+    border-radius: 30px;
+
+    background-color: white;
+
+    color: #5E935B;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* ホームリンク */
+.home-link{
+    text-align: center;
+    margin-top: 25px;
+}
+
+.home-link a{
+    color: #5E935B;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* PC */
+@media screen and (min-width: 768px){
+
+    .login-container{
+        max-width: 550px;
+    }
+
+    h1{
+        font-size: 38px;
+    }
+
+    input{
+        font-size: 18px;
+    }
+
+    .login-btn,
+    .register-btn{
+        font-size: 22px;
+    }
+}
+
+/* スマホ */
+@media screen and (max-width: 480px){
+
+    .login-container{
+        padding: 15px 20px 30px;
+    }
+
+    h1{
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    input{
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .login-btn,
+    .register-btn{
+        font-size: 18px;
+        padding: 13px;
+    }
+}
