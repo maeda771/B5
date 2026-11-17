@@ -35,7 +35,7 @@
 
     text-decoration: none;
     color: #66625D;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 1.4;
     text-align: center;
@@ -96,11 +96,11 @@
         min-height: 76px;
         padding: 8px 4px;
         gap: 8px;
-        font-size: 16px;
+        font-size: 19px;
     }
 
     .footer nav a i {
-        font-size: 30px;
+        font-size: 40px;
     }
 }
 
@@ -132,7 +132,7 @@
     align-items: center;
     gap: 12px;
 
-    font-size: 27px;
+    font-size: 25px;
     font-weight: 600;
     color: #121212;
 }
@@ -164,7 +164,7 @@
     justify-content: center;
 
     min-height: 44px;
-    min-width: 150px;
+    min-width: 130px;
     padding: 0 16px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -173,7 +173,7 @@
     color: #FFF;
     text-decoration: none;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
 }
 body.has-header {
@@ -191,8 +191,10 @@ body.has-header {
         font-size: 36px;
     }
     .header-login {
+        min-height: 50px;
+        min-width: 160px;
         padding: 0 24px;
-        font-size: 16px;
+        font-size: 20px;
     }
     /* 左メニューをヘッダーの下から表示 */
     .has-header .footer {
@@ -206,4 +208,7 @@ body.has-header {
     .has-header main {
         margin-left: 120px;
     }
+    .header-title {
+    font-size: 27px;
+}
 }
