@@ -1,2 +1,15 @@
 <!-- A06 商品詳細・編集画面 -->
 <!-- 実装する機能：画像・商品名・カテゴリ・価格・商品説明の表示と編集。色・サイズ別在庫の合計表示、A07への案内。 -->
+
+<?php
+/*
+ログインしていなければログイン画面へ
+
+require_once __DIR__ . '/../../app/auth.php';
+
+if (getAdminId() === false) {
+    header('Location: /B5/public/admin/login.php');
+    exit;
+}
+*/
+?>
