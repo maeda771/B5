@@ -16,7 +16,6 @@ renderHeader(表示タイトル、アイコン種別、戻り先のリンク);
 <?php
 require_once __DIR__ . '/../../auth.php';
 
-// 利用者用ヘッダーを表示
 function renderHeader(
     string $pageTitle, 
     string $icon = 'none',
