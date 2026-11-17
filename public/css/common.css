@@ -1,15 +1,43 @@
 /* 複数の部品に共通して使う CSS をまとめる */
 /* 全ての画面ファイルで使用 */
+/* 全体設定 */
+
+/* ヘッダー・フッター用の共通スタイルを読み込む */
+@import url("./layouts.css");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 /* 全画面の背景色 */
 body{
     background-color: #F9F7F3;
+    /*フォント*/
+    font-family: "Yu Gothic", sans-serif;
 }
 
-/* 「ログイン」などの緑ボタン共通スタイル
+/* 「ログイン」などの緑ボタン共通スタイル*/
 .button{
+    width: 100%;
 
-} */
+    padding: 15px;
+
+    border: none;
+    border-radius: 30px;
+
+    background-color: #5E935B;
+
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-bottom: 15px;
+}
 
 
 /* 入力欄ラベル「※必須」ラベルと入力欄の間隔を調整するための共通スタイル
@@ -17,22 +45,47 @@ body{
 
 } */
 
-/* 入力欄のラベルの共通スタイル 
+/* 入力欄のラベルの共通スタイル*/ 
 .form-label{
+    display: block;
 
-} */
+    margin-bottom: 8px;
 
-/* メールアドレス入力などのテキストボックス共通スタイル
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #333;
+}
+
+/* 入力エリア */
+.form-group{
+    margin-bottom: 25px;
+}
+
+/* メールアドレス入力などのテキストボックス共通スタイル */
 .form-input{
+    width: 100%;
 
-} */
+    padding: 15px;
 
-/* 「※必須」ラベルの共通スタイル
-.required-label{
+    border: 1px solid #ccc;
+    border-radius: 10px;
 
-} */
+    font-size: 16px;
+}
 
-/* ログイン失敗時・入力エラー時に表示するエラーメッセージの共通スタイル
+
+/* 必須 */
+.required{
+    color: red;
+    font-size: 14px;
+}
+
+/* ログイン失敗時・入力エラー時に表示するエラーメッセージの共通スタイル*/
 .form-error{
-
-} */
+    color: #ff3333;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+}
