@@ -1,5 +1,19 @@
 <!-- A12 会員一覧画面 -->
 <!-- 実装する機能：会員一覧、会員番号・氏名検索、登録日の並び替えと絞り込み、A13への遷移。 -->
+
+<?php
+/*
+ログインしていなければログイン画面へ
+
+require_once __DIR__ . '/../../app/auth.php';
+
+if (getAdminId() === false) {
+    header('Location: /B5/public/admin/login.php');
+    exit;
+}
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
