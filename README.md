@@ -155,3 +155,21 @@
 | A12 | 会員一覧画面 | [public/admin/members.php](public/admin/members.php) | [開く](http://localhost/B5/public/admin/members.php) | 未着手 |
 | A13 | 会員詳細画面 | [public/admin/member.php](public/admin/member.php) | [開く](http://localhost/B5/public/admin/member.php) | 未着手 |
 
+
+# フォルダ構成
+
+| フォルダ | 役割 |
+| --- | --- |
+| `app/` | `public/` の各画面から呼び出すPHPの処理を置く |
+| `app/views/` | 複数の画面で使う部品を置く |
+| `app/views/layouts/` | 共通のヘッダーとフッターを置く |
+| `app/views/components/` | 画面の一部として使う部品を置く。「マイページに戻る」リンクや商品カードなど。 |
+| `public/` | ブラウザで開く各画面のPHPファイルを置く。 |
+| `public/css/` | ボタンや入力欄などの共通スタイルと、各画面で使うCSSファイルを置く |
+| `public/images/` | 画面で使う画像を置く |
+| `public/images/products/` | 商品画像を置く |
+| `public/js/` | JavaScriptファイルを置く |
+| `public/user/` | 利用者側の画面をまとめます。ホーム、商品一覧、商品詳細、検索、お気に入りなどのPHPファイルを置く |
+| `public/user/account/` | 会員登録、ログイン、マイページ、注文履歴など、会員に関する画面を置く |
+| `public/user/shopping/` | カート、購入手続き、購入完了など、購入に関する画面を置く |
+| `public/admin/` | 管理者ログイン、商品管理、在庫管理、注文管理、会員管理など、管理者側の画面を置く |
