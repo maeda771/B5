@@ -13,17 +13,26 @@ if (!isset($_SESSION["member_id"])) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホーム</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>ホーム画面</title>
 </head>
 <body>
+    <!-- ヘッダーの表示 -->
+    <?php 
+    require __DIR__ . '/../../app/views/layouts/header.php';
+    renderHeader('ポチっと商店','leaf');
+     ?>
 
-<h1>ポチっと商店</h1>
+     <main>
 
-<p>
-    ようこそ
-    <?= htmlspecialchars($_SESSION["member_name"]) ?>
-    さん
-</p>
+     
+     </main>
 
+    <?php 
+    // フッターの表示
+    require_once __DIR__ . '/../../app/views/layouts/footer.php';
+    renderFooter('home'); 
+    ?>
 </body>
-</html>

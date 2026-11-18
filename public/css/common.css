@@ -1,11 +1,16 @@
 /* 複数の部品に共通して使う CSS をまとめる */
 /* 全ての画面ファイルで使用 */
 /* 全体設定 */
+
+/* ヘッダー・フッター用の共通スタイルを読み込む */
+@import url("./layouts.css");
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 /* 全画面の背景色 */
 body{

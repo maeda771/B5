@@ -1,14 +1,24 @@
 <?php
-    
+// セッションが起動していなければ起動
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+  
 /**
- * ログインしているかどうかを判定し、ログインしている場合は会員番号を返す。
- * ログインしていない場合は false を返す。
+ * 利用者：ログイン済みなら利用者番号、未ログインならfalse
  */
 
 function getMemberId()
+{   
+    return $_SESSION['member_id'] ?? false;
+}
+
+/**
+ * 管理者：ログイン済みなら管理者番号、未ログインならfalse
+ */
+function getAdminId()
 {
-    // 仮実装：常に会員番号1でログイン状態を返す
-    return 1;
+    return $_SESSION['admin_id'] ?? false;
 }
 
 ?>
