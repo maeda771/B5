@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>検索画面</title>
 </head>
-<body>
+<body class="has-header has-footer">
     <!-- ヘッダーの表示 -->
     <?php 
     require __DIR__ . '/../../app/views/layouts/header.php';

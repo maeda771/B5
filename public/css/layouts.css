@@ -1,5 +1,28 @@
 /* ヘッダー・フッター用の共通スタイル */
 
+/* ヘッダーの高さ分、上に余白を作る */
+body.has-header {
+    padding-top: 80px;
+}
+
+/* スマホ：フッターの高さ分、下に余白を作る */
+body.has-footer {
+    padding-bottom: calc(132px + env(safe-area-inset-bottom, 0px));
+}
+
+/* PC */
+@media (min-width: 768px) {
+    body.has-footer {
+        padding-bottom: 0;
+    }
+
+    /* 左メニューをヘッダーの下から表示する */
+    body.has-header .footer {
+        top: 80px;
+    }
+}
+
+
 /* フッター */
 .footer {
     position: fixed;
@@ -69,7 +92,7 @@
     /* 横表示 */
     .footer {
         /* ヘッダーの下に表示  */
-        top: 80px;
+        top: 0px;
         bottom: 0;
         left: 0;
         width: 120px;
@@ -176,9 +199,6 @@
     font-size: 16px;
     font-weight: 700;
 }
-body.has-header {
-    padding-top: 80px;
-}
 /* PC */
 @media (min-width: 768px) {
     .header-inner {
@@ -203,10 +223,6 @@ body.has-header {
     /* ヘッダーまで右にずれないようにする */
     body.has-header {
         padding-left: 0;
-    }
-    /* 本文だけ左メニューの幅を空ける */
-    .has-header main {
-        margin-left: 120px;
     }
     .header-title {
     font-size: 27px;
