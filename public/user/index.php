@@ -1,14 +1,29 @@
 <!-- U10 ホーム画面 -->
 <!-- 実装する機能：トップス・ボトムス・アウター・シューズ・その他小物のカテゴリからU11への案内、共通ナビ。 -->
+<?php
+session_start();
+
+if (!isset($_SESSION["member_id"])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/common.css">
-    <title></title>
+    <title>ホーム</title>
 </head>
 <body>
-    
+
+<h1>ポチっと商店</h1>
+
+<p>
+    ようこそ
+    <?= htmlspecialchars($_SESSION["member_name"]) ?>
+    さん
+</p>
+
 </body>
 </html>
