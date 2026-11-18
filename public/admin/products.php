@@ -24,7 +24,7 @@ if (getAdminId() === false) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>商品一覧画面</title>
 </head>
-<body>
+<body class="has-header has-footer">
     <!-- ヘッダーの表示 -->
     <?php 
     require __DIR__ . '/../../app/views/layouts/admin-header.php';
@@ -32,6 +32,7 @@ if (getAdminId() === false) {
      ?>
 
      <main>
+        <>
 
      
      </main>

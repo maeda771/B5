@@ -23,7 +23,7 @@ if (getAdminId() === false) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>会員詳細画面</title>
 </head>
-<body>
+<body class="has-header">
     <!-- ヘッダーの表示 -->
     <?php 
     require __DIR__ . '/../../app/views/layouts/admin-header.php';

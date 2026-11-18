@@ -1,14 +1,5 @@
 <!-- U10 ホーム画面 -->
 <!-- 実装する機能：トップス・ボトムス・アウター・シューズ・その他小物のカテゴリからU11への案内、共通ナビ。 -->
-<?php
-session_start();
-
-if (!isset($_SESSION["member_id"])) {
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,7 +9,7 @@ if (!isset($_SESSION["member_id"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>ホーム画面</title>
 </head>
-<body>
+<body class="has-header has-footer">
     <!-- ヘッダーの表示 -->
     <?php 
     require __DIR__ . '/../../app/views/layouts/header.php';
