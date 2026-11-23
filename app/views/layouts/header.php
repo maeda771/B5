@@ -29,14 +29,14 @@ function renderHeader(
             <div class="header-title">
                 <?php if ($icon === 'leaf'): ?>
                     <div class="header-logo">
-                        <i class="fas fa-leaf" aria-hidden="true"></i>
+                        <i class="fas fa-leaf"></i>
                         <span><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></span>
                     </div>
                 <?php elseif ($icon === 'back' && $backUrl !== null): ?>
                     <a class="header-back"  
                        href="<?= htmlspecialchars($backUrl, ENT_QUOTES, 'UTF-8') ?>"
                     >
-                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-left"></i>
                         <span><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></span>
                         </a>
                 <?php else: ?>

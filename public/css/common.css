@@ -11,7 +11,6 @@
     box-sizing: border-box;
 }
 
-
 /* 全画面の背景色 */
 body{
     background-color: #F9F7F3;
@@ -83,4 +82,74 @@ body{
     font-weight: bold;
     text-align: center;
     margin-bottom: 25px;
+}
+
+
+
+/* 共通ボタン：button・aタグの両方で使用 */
+.common-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 10px 16px;
+    box-sizing: border-box;
+
+    border: 1px solid #5E935B;
+    border-radius: 6px;
+    background-color: #5E935B;
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* キーボード操作時に選択位置を表示 */
+.common-button:focus-visible {
+    outline: 3px solid #121212;
+    outline-offset: 3px;
+}
+
+/* 共通のページ切り替え */
+.common-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.common-pagination a,
+.common-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px;
+    box-sizing: border-box;
+
+    border: 1px solid #DEDBD6;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    color: #66625D;
+
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.common-pagination .is-current {
+    border-color: #5E935B;
+    background-color: #5E935B;
+    color: #FFFFFF;
+    font-weight: 700;
 }

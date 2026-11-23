@@ -1,0 +1,133 @@
+/* 一覧画面の共通スタイル。
+ * c-list-で始まる部品にだけ適用し、既存のヘッダー・フッターは変更しない。
+ * common.cssの後、画面専用CSSの前に読み込む。
+ */
+.c-list-page {
+    min-width: 0;
+    padding: 16px 12px 20px;
+    box-sizing: border-box;
+    color: #121212;
+    font-size: 14px;
+}
+.c-list-page *, .c-list-page *::before, .c-list-page *::after { box-sizing: border-box; }
+.c-list-page > form, .c-list-page > div, .c-list-page > nav {
+    width: 100%; max-width: 1100px; min-width: 0; margin-right: auto; margin-left: auto;
+}
+.c-list-form { margin-top: 0; margin-bottom: 18px; }
+.c-list-search {
+    display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 12px;
+    border: 1px solid #DEDBD6; border-radius: 10px; background-color: #FFFFFF;
+}
+.c-list-search > i { flex-shrink: 0; color: #999999; font-size: 17px; }
+.c-list-search > input {
+    flex: 1; width: 0; min-width: 0; padding: 0; border: none;
+    background-color: transparent; color: #121212; font: inherit; font-size: 16px;
+}
+.c-list-search > input:focus { outline: none; }
+.c-list-search:focus-within { outline: 2px solid #5E935B; outline-offset: 2px; }
+.c-list-search > input::placeholder { color: #999999; }
+
+/* 並び替えと絞り込み。片方だけの場合も残った部品が幅を使う。 */
+.c-list-controls { display: flex; align-items: flex-start; gap: 12px; margin-top: 14px; }
+.c-list-controls > * { flex: 1; min-width: 0; }
+.c-list-sort { position: relative; }
+.c-list-sort > select {
+    display: block; appearance: none; width: 100%; min-height: 36px; padding: 7px 26px 7px 10px;
+    border: 1px solid #DEDBD6; border-radius: 20px; background-color: #FFFFFF;
+    color: #121212; font: inherit; font-weight: 600; text-align: center; cursor: pointer;
+}
+.c-list-sort > i {
+    position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
+    color: #66625D; font-size: 10px; pointer-events: none;
+}
+.c-list-filter { position: relative; min-width: 0; }
+.c-list-filter > summary {
+    display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 36px; padding: 7px 10px;
+    border: 1px solid #DEDBD6; border-radius: 20px; background-color: #FFFFFF;
+    font-weight: 600; list-style: none; cursor: pointer;
+}
+.c-list-filter > summary::-webkit-details-marker { display: none; }
+.c-list-filter > summary > i:last-child { font-size: 10px; }
+.c-list-filter-panel {
+    position: absolute; top: calc(100% + 4px); right: 0; z-index: 20;
+    width: 260px; max-width: calc(100vw - 24px); padding: 12px;
+    max-height: min(60vh, 480px); overflow-y: auto;
+    border: 1px solid #DEDBD6; border-radius: 8px; background-color: #FFFFFF;
+}
+.c-list-filter-panel fieldset { min-width: 0; margin: 0 0 12px; padding: 0; border: none; }
+.c-list-filter-panel legend { margin-bottom: 10px; padding: 0; font-weight: 600; }
+.c-list-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.c-list-options label { position: relative; min-width: 0; cursor: pointer; }
+.c-list-options input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.c-list-options span {
+    display: flex; align-items: center; justify-content: center; min-height: 34px; padding: 5px 2px;
+    border: 1px solid #DEDBD6; border-radius: 5px; background-color: #F9F7F3;
+    font-size: 11px; font-weight: 600; text-align: center; overflow-wrap: anywhere;
+}
+.c-list-options input:checked + span { border-color: #5E935B; background-color: #E2EDDF; color: #5E935B; }
+.c-list-options input:focus-visible + span { outline: 2px solid #121212; outline-offset: 2px; }
+.c-list-filter-panel fieldset > input, .c-list-filter-panel fieldset > select {
+    width: 100%; min-width: 0; min-height: 36px; padding: 6px;
+    border: 1px solid #DEDBD6; border-radius: 5px; background-color: #FFFFFF; font: inherit;
+}
+.c-list-filter-actions { display: flex; gap: 8px; margin-top: 14px; }
+.c-list-filter-actions button {
+    min-height: 36px; padding: 7px 8px; border-radius: 5px;
+    font: inherit; font-size: 11px; font-weight: 600; cursor: pointer;
+}
+.c-list-reset { flex: 1; border: 1px solid #DEDBD6; background-color: #FFFFFF; color: #121212; }
+.c-list-filter-actions .c-list-button { flex: 2; }
+
+/* 緑ボタンは、aタグとbuttonタグで同じ形を使う。 */
+.c-list-button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border: 1px solid #5E935B; border-radius: 5px; padding: 7px 14px;
+    background-color: #5E935B; color: #FFFFFF; font: inherit; font-weight: 600; text-decoration: none;
+}
+
+/* 列の内容は画面ごとに変えるが、表の見た目は共通にする。 */
+.c-list-result { min-width: 0; }
+.c-list-table { width: 100%; min-width: 0; table-layout: fixed; border-collapse: separate; border-spacing: 0; font-size: 12px; }
+.c-list-col-check, .c-list-col-detail { width: 7%; }
+.c-list-table th {
+    padding: 8px 2px; color: #888888; font-size: 11px; font-weight: 600;
+    text-align: center; overflow-wrap: anywhere;
+}
+.c-list-table td {
+    padding: 10px 2px; border-bottom: 1px solid #EEECE8; background-color: #FFFFFF;
+    text-align: center; vertical-align: middle; overflow-wrap: anywhere;
+}
+.c-list-table tbody tr:first-child td:first-child { border-top-left-radius: 8px; }
+.c-list-table tbody tr:first-child td:last-child { border-top-right-radius: 8px; }
+.c-list-table input[type="checkbox"] {
+    display: block; width: 14px; height: 14px; max-width: 100%; margin: 0 auto;
+    accent-color: #5E935B; cursor: pointer;
+}
+.c-list-detail {
+    display: flex; align-items: center; justify-content: center; width: 100%; min-height: 30px;
+    color: #121212; text-decoration: none; font-size: 12px;
+}
+.c-list-table .c-list-empty { padding: 30px 12px; font-size: 14px; }
+
+.c-list-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 28px; }
+.c-list-pagination > a, .c-list-pagination > span {
+    display: flex; align-items: center; justify-content: center; min-width: 30px; height: 34px; padding: 4px;
+    border: 1px solid #E8E5E0; border-radius: 5px; background-color: #FFFFFF; color: #66625D;
+    font-size: 15px; text-decoration: none;
+}
+.c-list-pagination > .is-current { border-color: #5E935B; background-color: #5E935B; color: #FFFFFF; font-weight: 700; }
+.c-list-pagination > .is-disabled { border-color: #B5B5B5; background-color: #B5B5B5; color: #888888; }
+.c-list-pagination i { font-size: 10px; }
+.c-list-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+@media (min-width: 768px) {
+    .c-list-page { padding: 24px 32px; font-size: 16px; }
+    .c-list-controls { gap: 20px; }
+    .c-list-sort > select, .c-list-filter > summary { min-height: 40px; }
+            .c-list-table { font-size: 16px; }
+    .c-list-table th { padding: 10px 6px; font-size: 14px; }
+    .c-list-table td { padding: 12px 6px; }
+    .c-list-table input[type="checkbox"] { width: 18px; height: 18px; }
+    .c-list-detail { min-height: 36px; font-size: 16px; }
+    .c-list-pagination > a, .c-list-pagination > span { min-width: 38px; height: 40px; }
+}

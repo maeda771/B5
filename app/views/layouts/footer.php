@@ -14,35 +14,35 @@ $loginUrl = '/B5/public/user/account/login.php';
 
 <!-- 利用者用フッター -->
 <footer class="footer">
-    <nav aria-label="メインメニュー">
+    <nav>
         <a class="<?= $current === 'home' ? 'is-current' : '' ?>" href="/B5/public/user/index.php">
             <!-- 現在の画面であればスタイルを変更 -->
-            <i class="fas fa-home " aria-hidden="true"></i>
+            <i class="fas fa-home"></i>
             <span>ホーム</span>
         </a>
         <a class="<?= $current === 'search' ? 'is-current' : '' ?>" href="/B5/public/user/search.php">
-            <i class="fas fa-search " aria-hidden="true"></i>
+            <i class="fas fa-search"></i>
             <span>検索</span>
         </a>
 
         <a class="<?= $current === 'favorites' ? 'is-current' : '' ?>" href="<?= $isLoggedIn
             ? '/B5/public/user/favorites.php'
             : $loginUrl ?>">
-            <i class="fas fa-heart " aria-hidden="true"></i>
+            <i class="fas fa-heart"></i>
             <span>お気に入り</span>
         </a>
 
         <a class="<?= $current === 'cart' ? 'is-current' : '' ?>" href="<?= $isLoggedIn
             ? '/B5/public/user/shopping/cart.php'
             : $loginUrl ?>">
-            <i class="fas fa-shopping-cart " aria-hidden="true"></i>
+            <i class="fas fa-shopping-cart"></i>
             <span>カート</span>
         </a>
 
         <a class="<?= $current === 'mypage' ? 'is-current' : '' ?>" href="<?= $isLoggedIn
             ? '/B5/public/user/account/index.php'
             : $loginUrl ?>">
-            <i class="fas fa-user " aria-hidden="true"></i>
+            <i class="fas fa-user"></i>
             <span>マイページ</span>
         </a>
     </nav>
