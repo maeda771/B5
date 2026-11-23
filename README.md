@@ -117,14 +117,14 @@
 
 ### 13. 商品管理（管理者）
 
-担当者：未定
+担当者：前田
 
 | 画面ID | 画面名 | パス | 画面URL | 進捗 |
 | --- | --- | --- | --- | --- |
-| A02 | 商品一覧画面 | [public/admin/products.php](public/admin/products.php) | [開く](http://localhost/B5/public/admin/products.php) | 未着手 |
+| A02 | 商品一覧画面 | [public/admin/products.php](public/admin/products.php) | [開く](http://localhost/B5/public/admin/products.php) | 完了 |
 | A03 | 商品削除確認画面 | [public/admin/products.php](public/admin/products.php) | [開く](http://localhost/B5/public/admin/products.php) | 未着手 |
-| A04 | 商品登録画面 | [public/admin/product-create.php](public/admin/product-create.php) | [開く](http://localhost/B5/public/admin/product-create.php) | 未着手 |
-| A05 | カラー追加画面 | [public/admin/product-create.php](public/admin/product-create.php) | [開く](http://localhost/B5/public/admin/product-create.php) | 未着手 |
+| A04 | 商品登録画面 | [public/admin/product-create.php](public/admin/product-create.php) | [開く](http://localhost/B5/public/admin/product-create.php) | 完了 |
+| A05 | カラー追加画面 | [public/admin/product-create.php](public/admin/product-create.php) | [開く](http://localhost/B5/public/admin/product-create.php) | 完了 |
 | A06 | 商品詳細・編集画面 | [public/admin/product-edit.php](public/admin/product-edit.php) | [開く](http://localhost/B5/public/admin/product-edit.php) | 未着手 |
 
 ### 14. 在庫管理（管理者）

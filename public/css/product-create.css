@@ -1,0 +1,88 @@
+/* 専用CSS読み込み */
+@import url("./product-create-image.css?v=2");
+@import url("./product-create-modal.css?v=2");
+@import url("./product-create-variants.css?v=2");
+
+body.product-create-body {
+    overflow-y: auto;
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+}
+.product-create-page {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+body.product-create-body main.product-create-page {
+    margin-left: auto;
+    margin-right: auto;
+}
+.product-create-page .required {
+    display: inline-block;
+    margin-left: 8px;
+}
+.product-create-page input,
+.product-create-page select,
+.product-create-page textarea,
+.product-color-dialog input {
+    font-family: inherit;
+    font-size: 16px;
+    color: #121212;
+    background-color: #FFFFFF;
+}
+.product-create-page input::placeholder,
+.product-create-page textarea::placeholder {
+    color: #999999;
+}
+.product-description {
+    min-height: 160px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    resize: vertical;
+}
+/* 共通.buttonの色・文字サイズはそのまま使い、配置用の余白だけ変更 */
+.product-create-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid #DEDBD6;
+    background-color: #F9F7F3;
+}
+.product-create-submit.button {
+    max-width: 600px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.product-create-submit:disabled,
+#save-color:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+@media (min-width: 768px) {
+    .product-create-page {
+        padding: 32px;
+    }
+}
+
+.product-create-page .form-group {
+    margin-bottom: 12px;
+}
+.product-create-page .form-label {
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.product-create-page .required {
+    font-size: 14px;
+}
+.product-color-dialog .form-label {
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+.product-color-dialog .form-group {
+    margin-bottom: 14px;
+}

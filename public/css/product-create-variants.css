@@ -1,0 +1,155 @@
+/* カラー・サイズの選択欄専用。 */
+.product-variants {
+    min-width: 0;
+    border: none;
+}
+.product-variant-field {
+    display: grid;
+    grid-template-columns: 3.5em minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: #66625D;
+    font-weight: bold;
+}
+.product-select {
+    position: relative;
+    min-width: 0;
+    font-weight: normal;
+}
+.product-select summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    list-style: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+.product-select summary::-webkit-details-marker {
+    display: none;
+}
+.product-select summary > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.product-select summary i {
+    flex-shrink: 0;
+    font-size: 12px;
+}
+.product-select[open] {
+    z-index: 10;
+}
+.product-select-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #D5D5D5;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 12px #00000018;
+}
+.product-color-options {
+    max-height: 230px;
+    overflow-y: auto;
+}
+.product-select-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 6px 8px;
+    border: 1px solid #D5D5D5;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+.product-select-option > span:not(.product-color-dot) {
+    overflow-wrap: anywhere;
+}
+.product-select-option input {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    accent-color: #5E935B;
+}
+.product-color-dot {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #DEDBD6;
+    border-radius: 50%;
+}
+.product-add-color {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 6px;
+    border: 1px solid #DEDBD6;
+    border-radius: 6px;
+    background-color: #F9F7F3;
+    color: #5E935B;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* 選択済みの値は、選択肢リストより上のsummaryに表示する。 */
+#color-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    min-width: 0;
+    white-space: normal;
+}
+.product-selected-color {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+}
+.product-selected-color .product-color-dot {
+    width: 16px;
+    height: 16px;
+}
+.product-color-options {
+    display: grid;
+    gap: 6px;
+}
+.product-select-option small {
+    margin-left: 2px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.product-size-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+.product-select-option input {
+    appearance: none;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #D5D5D5;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+.product-select-option input:checked {
+    border-color: #5E935B;
+    background-color: #5E935B;
+}
+.product-select-option input:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 4px;
+    height: 8px;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
