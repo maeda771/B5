@@ -30,6 +30,7 @@ CREATE TABLE `products` (
     `description` VARCHAR(100) NOT NULL,
     `image` VARCHAR(100) NULL DEFAULT NULL,
     `created_at` DATE NOT NULL,
+    `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

@@ -1,0 +1,27 @@
+/* 商品削除確認モーダル。共通CSSは変更しない。 */
+.product-delete-dialog {
+    width: calc(100% - 40px);
+    max-width: 420px;
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 36px 20px 20px;
+    overflow-y: auto;
+    border: none;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #121212;
+    text-align: center;
+}
+.product-delete-dialog::backdrop { background-color: #00000033; }
+.product-delete-dialog h2 { margin-bottom: 16px; font-size: 20px; line-height: 1.5; }
+.product-delete-dialog p { margin-bottom: 24px; color: #66625D; font-size: 13px; line-height: 1.6; }
+.product-delete-actions { display: flex; gap: 12px; }
+.product-delete-actions button { flex: 1; min-width: 0; padding: 8px; font-size: 14px; }
+.product-delete-cancel.common-button { border-color: #D5D5D5; background-color: #FFFFFF; color: #121212; }
+.product-delete-confirm.common-button { border-color: #C95E5E; background-color: #C95E5E; }
+.product-delete-confirm:disabled { opacity: 0.6; cursor: wait; }
+.products-delete { cursor: pointer; }
+.products-delete:disabled { opacity: 0.4; }
+.product-result { margin-bottom: 16px; padding: 12px; border: 1px solid #DEDBD6; border-radius: 6px; }
+.product-result-success { color: #5E935B; }
+.product-result-error { color: #C95E5E; }

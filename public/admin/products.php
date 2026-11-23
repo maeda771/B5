@@ -11,6 +11,7 @@ if (getAdminId() === false) {
 */
 require_once __DIR__ . '/../../app/auth.php';
 require_once __DIR__ . '/../../app/db.php';
+require __DIR__ . '/../../app/admin/product-delete/initialize.php';
 
 
 
@@ -35,7 +36,7 @@ require_once __DIR__ . '/../../app/views/components/list/pagination.php';
 $list = require __DIR__ . '/../../app/admin/products-data.php';
 ?>
 <!-- A02 商品一覧画面 -->
-<!-- A03 商品削除確認画面（削除処理は未実装） -->
+<!-- A03 商品削除確認画面 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -44,8 +45,10 @@ $list = require __DIR__ . '/../../app/admin/products-data.php';
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/common-list.css">
     <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/product-delete.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="../js/common-list.js" defer></script>
+    <script src="../js/product-delete.js" defer></script>
     <title>商品一覧画面</title>
 </head>
 <body class="has-header has-footer">
@@ -56,6 +59,11 @@ $list = require __DIR__ . '/../../app/admin/products-data.php';
     <main class="admin-products c-list-page" data-list-page
           data-per-page="<?= $list['perPage'] ?>"
           data-portrait-count="8" data-landscape-count="5">
+        <?php if ($deleteResult): ?>
+            <p class="product-result <?= $deleteResult['type'] === 'success' ? 'product-result-success' : 'product-result-error' ?>" role="status">
+                <?= htmlspecialchars($deleteResult['message'], ENT_QUOTES, 'UTF-8') ?>
+            </p>
+        <?php endif; ?>
         <!-- 共通部品：検索・並び替え・絞り込み -->
         <!-- 検索・並び替え・絞り込みをまとめて送信するフォーム -->
         <form action="products.php"
@@ -112,23 +120,24 @@ $list = require __DIR__ . '/../../app/admin/products-data.php';
         <!-- 共通部品：商品一覧用の列とデータを渡す -->
         <?php renderListTable($list['columns'], $list['products'], $list['table']); ?>
 
-        <!-- 商品一覧固有：削除ボタン。削除処理はまだ未実装 -->
+        <!-- 商品を選択すると、削除確認モーダルを開ける -->
         <div class="products-delete-area">
-            <button type="button" class="products-delete"
-                    title="削除処理は未実装です" disabled
-            >
+            <button type="button" class="products-delete" id="open-product-delete" disabled>
                 <i class="far fa-trash-alt"></i>
             </button>
         </div>
-
-        <!-- A03の削除確認モーダルを実装するときは、この画面に記述する -->
+        
 
         <!-- 共通部品：ページ切り替え -->
         <?php renderListPagination($list['page'], $list['totalPages'], $list['pageUrl']); ?>
     </main>
     <?php
-    require_once __DIR__ . '/../../app/views/layouts/admin-footer.php';
-    renderFooter('products');
+        // フッターの表示
+        require_once __DIR__ . '/../../app/views/layouts/admin-footer.php';
+        renderFooter('products');
+
+        // 商品削除モーダル
+        require __DIR__ . '/../../app/views/components/admin/products/delete-modal.php'; 
     ?>
 </body>
 </html>

@@ -10,21 +10,18 @@ $description = '';
 $selectedColors = [];
 $selectedSizes = [];
 
-// CSRF対策、トークンがなければ作成し、セッションに保存する
-if (empty($_SESSION['product_create_token'])) {
-    $_SESSION['product_create_token'] = bin2hex(random_bytes(32));
-}
+// 共通のCSRF処理を読み込む
+require_once __DIR__ . '/../../csrf.php';
 // 正しいトークン
-$token = $_SESSION['product_create_token'];
-
+$token = getCsrfToken();
 // POSTで送信されたリクエストかどうか
 $isPost = $_SERVER['REQUEST_METHOD'] === 'POST';
 // 商品登録かカラー追加かを保持
-$action = is_string($_POST['action'] ?? null) ? $_POST['action'] : '';
-// フォームから送られてきたトークン
-$postedToken = is_string($_POST['token'] ?? null) ? $_POST['token'] : '';
-// トークンが一致しているか
-$tokenMatches = hash_equals($token, $postedToken);
+$action = is_string($_POST['action'] ?? null)
+    ? $_POST['action']
+    : '';
+// フォームから送られたトークンが一致しているか
+$tokenMatches = verifyCsrfToken($_POST['token'] ?? null);
 
 // DBからカラー一覧を取得
 $colors = $pdo->query('SELECT color_id, color_name, color_code FROM colors ORDER BY color_id')->fetchAll(PDO::FETCH_ASSOC);

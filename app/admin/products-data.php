@@ -21,7 +21,8 @@ return (static function (PDO $pdo): array {
     // 縦長8件・横長5件。初回の画面の向きはJSから送られる。
     $requested = filter_input(INPUT_GET, 'per_page', FILTER_VALIDATE_INT);
     $perPage = in_array($requested, [5, 8], true) ? $requested : 8;
-    $conditions = [];
+    // 削除済みの商品を、件数・検索結果・ページ数から除外する。
+    $conditions = ['p.is_deleted = FALSE'];
     $params = [];
     if ($keyword !== '') {
         $conditions[] = '(p.product_name LIKE ? OR CAST(p.product_id AS CHAR) LIKE ?)';
@@ -88,8 +89,17 @@ return (static function (PDO $pdo): array {
         'table' => [
             'idKey' => 'product_id', 'labelKey' => 'product_name',
             'checkbox' => 'product_ids',
-            'detail' => static function (array $row): string {
-                return 'product-edit.php?product_id=' . (int) $row['product_id'];
+            'detail' => static function (array $row) use (
+                    $keyword, $sort, $category, $page, $perPage
+            ): string {
+                return 'product-edit.php?' . http_build_query([
+                    'product_id' => (int) $row['product_id'],
+                    'return_keyword' => $keyword,
+                    'return_sort' => $sort,
+                    'return_category' => $category,
+                    'return_page' => $page,
+                    'return_per_page' => $perPage,
+                ]);
             },
             'empty' => '条件に一致する商品はありません。',
         ],
