@@ -27,7 +27,7 @@ function renderHeader(
                     <a class="header-back"  
                        href="<?= htmlspecialchars($backUrl, ENT_QUOTES, 'UTF-8') ?>"
                     >
-                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-left"></i>
                         <span><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></span>
                         </a>
                 <?php else: ?>

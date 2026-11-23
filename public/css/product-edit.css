@@ -1,0 +1,53 @@
+/* A06 商品詳細・編集。入力欄・ラベル・保存ボタンはcommon.cssを使う。 */
+@import url("./product-edit-image.css");
+body.product-edit-body {
+    overflow-y: auto;
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+}
+body.product-edit-body main.product-edit-page {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.product-edit-page .form-group { margin-bottom: 12px; }
+.product-edit-page .form-label { margin-bottom: 4px; color: #66625D; font-size: 16px; line-height: 1.4; }
+.product-edit-page .form-input { font: inherit; font-size: 16px; background-color: #FFFFFF; color: #121212; }
+.product-edit-page [hidden] { display: none; }
+.product-edit-price { position: relative; }
+.product-edit-price > span { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); }
+.product-edit-price .form-input { padding-left: 34px; }
+.product-edit-stock { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.product-edit-stock strong { font-size: 32px; font-weight: 600; }
+.product-edit-stock p > span { margin-left: 4px; font-size: 14px; }
+.product-edit-stock-link.common-button {
+    width: auto;
+    min-height: 0;
+    padding: 10px 30px;
+
+    border: 1px solid #456B43;
+    border-radius: 10px;
+    background-color: #F9F7F3;
+    color: #456B43;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    box-shadow: none;
+}
+.product-edit-description { min-height: 160px; padding-top: 12px; padding-bottom: 12px; resize: vertical; }
+.product-edit-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid #DEDBD6;
+    background-color: #F9F7F3;
+}
+.product-edit-submit.button { max-width: 600px; margin: 0 auto; cursor: pointer; }
+.product-edit-submit:disabled { opacity: 0.6; cursor: wait; }
+@media (min-width: 768px) {
+    body.product-edit-body main.product-edit-page { padding: 32px; }
+}

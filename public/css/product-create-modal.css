@@ -1,0 +1,69 @@
+.product-color-dialog {
+    width: calc(100% - 32px);
+    max-width: 460px;
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 20px;
+    overflow-y: auto;
+    border: none;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    color: #121212;
+}
+.product-color-dialog::backdrop {
+    background-color: #00000033;
+}
+.product-color-dialog h2 {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #DEDBD6;
+    font-size: 22px;
+}
+.product-color-dialog .form-group {
+    margin-bottom: 20px;
+}
+.product-color-code-box {
+    position: relative;
+}
+.product-color-code-box input {
+    padding-right: 56px;
+}
+.product-color-swatch {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 26px;
+    height: 26px;
+    transform: translateY(-50%);
+    border: 1px solid #DEDBD6;
+    border-radius: 50%;
+    background-color: #BC8DD5;
+}
+.product-color-picker-label {
+    display: block;
+    margin: 14px 0 8px;
+}
+.product-color-picker {
+    display: block;
+    width: 100%;
+    height: 56px;
+    padding: 4px;
+    border: 1px solid #D5D5D5;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.product-color-dialog-actions {
+    display: flex;
+    gap: 12px;
+}
+.product-color-dialog-actions > button {
+    flex: 1;
+    min-width: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.product-color-cancel.common-button {
+    border-color: #D5D5D5;
+    background-color: #FFFFFF;
+    color: #121212;
+}

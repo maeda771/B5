@@ -13,7 +13,11 @@ body.has-footer {
 /* PC */
 @media (min-width: 768px) {
     body.has-footer {
-        padding-bottom: 0;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+    body.has-footer main {
+        margin-left: 120px;
     }
 
     /* 左メニューをヘッダーの下から表示する */
@@ -138,6 +142,7 @@ body.has-footer {
     height: 80px;
     box-sizing: border-box;
     border-bottom: 1px solid #DEDBD6;
+    background-color: #F9F7F3;
 }
 .header-inner {
     display: flex;
