@@ -1,0 +1,141 @@
+/* 在庫管理画面の商品上概要用スタイル */
+
+/* 商品概要：画像と情報を横並びにする */
+.product-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid #DEDBD6;
+}
+
+/* 商品画像 */
+.product-summary-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 80px;
+
+    width: 80px;
+    height: 64px;
+    overflow: hidden;
+
+    border-radius: 6px;
+    background-color: #EEECE7;
+    color: #66625D;
+    font-size: 12px;
+}
+
+.product-summary-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 右側の商品情報 */
+.product-summary-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-summary-name {
+    margin: 0 0 4px;
+    color: #66625D;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.product-summary-id {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 6px;
+
+    color: #999999;
+    font-size: 12px;
+}
+
+/* 薄緑の総在庫表示 */
+.product-summary-stock {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    min-height: 28px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background-color: #DCEBD8;
+    color: #30382E;
+}
+
+.product-summary-stock > span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.product-summary-stock > p {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    margin: 0;
+}
+
+.product-summary-stock strong {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.product-summary-stock p > span {
+    font-size: 11px;
+}
+
+/* 商品概要の左右に余白を作る */
+.product-summary {
+    gap: 10px;
+    padding: 16px 12px;
+}
+
+/* 商品画像 */
+.product-summary-image {
+    flex: 0 0 88px;
+    width: 88px;
+    height: 72px;
+}
+
+/* 商品名 */
+.product-summary-name {
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* 商品番号 */
+.product-summary-id {
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+/* 総在庫の緑欄 */
+.product-summary-stock {
+    width: 100%;
+    max-width: 180px;
+    min-height: 28px;
+    gap: 16px;
+    padding: 3px 8px;
+}
+
+.product-summary-stock > span {
+    font-size: 11px;
+}
+
+.product-summary-stock strong {
+    font-size: 20px;
+}
+
+.product-summary-stock p > span {
+    font-size: 11px;
+}

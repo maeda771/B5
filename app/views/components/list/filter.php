@@ -32,7 +32,7 @@ function renderListFilter(array $groups): void
                                 </label>
                             <?php endforeach; ?>
                         </div>
-                                        <?php elseif ($type === 'price'): ?>
+                        <?php elseif ($type === 'price'): ?>
                         <!-- 価格の下限・上限を2つのつまみで指定 -->
                         <div class="c-list-price" data-price-range>
                             <p data-price-label>
@@ -66,7 +66,38 @@ function renderListFilter(array $groups): void
                                 >
                             </div>
                         </div>
-                    <?php elseif ($type === 'select'): ?>
+                        <!-- 年月の指定 -->
+                        <?php elseif ($type === 'year_month'): ?>
+                            <div class="c-list-year-month">
+                                <button type="button" class="c-list-date-clear" data-list-date-clear>
+                                    指定なし
+                                </button>
+                                <select name="year" aria-label="変動年" data-list-default="">
+                                    <option value="">年</option>
+                                    <?php foreach ($group['years'] as $year): ?>
+                                        <option
+                                            value="<?= (int) $year ?>"
+                                            <?= (string) ($selected['year'] ?? '') === (string) $year
+                                                ? 'selected' : '' ?>
+                                        >
+                                            <?= (int) $year ?>年
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <select name="month" aria-label="変動月" data-list-default="">
+                                    <option value="">月</option>
+                                    <?php for ($month = 1; $month <= 12; $month++): ?>
+                                        <option
+                                            value="<?= $month ?>"
+                                            <?= (string) ($selected['month'] ?? '') === (string) $month
+                                                ? 'selected' : '' ?>
+                                        >
+                                            <?= $month ?>月
+                                        </option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        <?php elseif ($type === 'select'): ?>
                         <select name="<?= listEscape($name) ?>" data-list-default="<?= listEscape($default) ?>">
                             <?php foreach ($group['options'] as $value => $label): ?>
                                 <option value="<?= listEscape($value) ?>" <?= (string) $value === (string) $selected ? 'selected' : '' ?>><?= listEscape($label) ?></option>

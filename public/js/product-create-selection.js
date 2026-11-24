@@ -28,21 +28,18 @@
         colorSummary.replaceChildren();
         const selectedColors = [...colors.querySelectorAll('input:checked')];
         if (!selectedColors.length) colorSummary.textContent = 'カラーを選択';
+        // 選択されたカラーごとに、共通関数で表示部品を作る
         selectedColors.forEach(input => {
-            const chip = document.createElement('span');
-            chip.className = 'product-selected-color';
-            const dot = document.createElement('span');
-            dot.className = 'product-color-dot';
-            if (/^[0-9a-f]{6}$/i.test(input.dataset.colorCode || '')) {
-                dot.style.backgroundColor = `#${input.dataset.colorCode}`;
-            }
-            const name = document.createElement('span');
-            name.textContent = input.dataset.label;
-            chip.append(dot, name);
-            colorSummary.append(chip);
+            const label = createColorLabel(
+                input.dataset.label,
+                input.dataset.colorCode
+            );
+
+            colorSummary.append(label);
         });
         const names = [...sizes.querySelectorAll('input:checked')].map(input => input.dataset.label);
-        sizeSummary.textContent = names.length ? names.join('・') : 'サイズを選択';
+        // 共通処理で、選択したサイズ名を表示する。
+        updateSizeLabel(sizeSummary, names);
         sortSelectedFirst(document.querySelector('#product-color-options'));
         sortSelectedFirst(document.querySelector('.product-size-options'));
     }

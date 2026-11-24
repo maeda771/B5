@@ -1,0 +1,139 @@
+/* 在庫管理画面の表用スタイル */
+
+/* 在庫表の周囲の余白 */
+.product-stock-section {
+    padding: 16px 12px;
+}
+
+/* 見出しと在庫変更ボタンを横並びにする */
+.product-stock-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.product-stock-heading h2 {
+    margin: 0;
+    color: #66625D;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 在庫変更ボタン */
+.product-stock-edit {
+    min-height: 36px;
+    padding: 8px 16px;
+    gap: 14px;
+    border: 1px solid #5E935B;
+    border-radius: 999px;
+    font-size: 12px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #5E935B;
+    font-weight: 900;
+}
+
+/* 表の外枠を角丸にする */
+.product-stock-table-wrapper {
+    overflow: hidden;
+    border: 1px solid #DEDBD6;
+    border-radius: 8px;
+}
+
+/* 表全体 */
+.product-stock-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    color: #66625D;
+    font-size: 14px;
+}
+
+/* 各マスの余白と区切り線 */
+.product-stock-table th,
+.product-stock-table td {
+    padding: 12px 4px;
+    border-right: 1px solid #DEDBD6;
+    border-bottom: 1px solid #DEDBD6;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 色名が入る左端の列 */
+.product-stock-table th:first-child {
+    width: 38%;
+}
+
+/* カラー・サイズの見出し */
+.product-stock-table thead th {
+    padding: 8px 4px;
+    background-color: #E8E6E2;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* 色名は左揃え */
+.product-stock-table tbody th {
+    padding-left: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* 外枠と線が二重にならないようにする */
+.product-stock-table tr > :last-child {
+    border-right: none;
+}
+
+.product-stock-table tbody tr:last-child > * {
+    border-bottom: none;
+}
+
+/* 色の丸と色名を横並びにする */
+.product-stock-color {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    overflow-wrap: anywhere;
+}
+
+.product-stock-color-dot {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+}
+
+/* 在庫数の「点」を小さくする */
+.product-stock-table td small {
+    margin-left: 2px;
+    font-size: 10px;
+}
+/* 表の下に表示する、薄緑の履歴リンク */
+.product-stock-history {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    min-height: 36px;
+    margin-top: 12px;
+    padding: 8px 12px;
+
+    border-radius: 5px;
+    background-color: #DCEBD8;
+    color: #5E935B;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* 矢印だけ右端に寄せる */
+.product-stock-history-arrow {
+    margin-left: auto;
+}

@@ -1,0 +1,226 @@
+/* 履歴カード全体の配置 */
+.stock-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 12px;
+    color: #66625D;
+}
+
+/* 履歴1件分の枠 */
+.stock-history-card {
+    padding: 10px 12px;
+    border: 1px solid #DEDBD6;
+    border-radius: 8px;
+    background-color: #F9F7F3;
+}
+
+/* 日時と変動区分を左右に配置 */
+.stock-history-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #DEDBD6;
+}
+
+.stock-history-heading time {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 変動区分の丸い表示 */
+.stock-history-type {
+    flex-shrink: 0;
+    min-width: 60px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background-color: #5E935B;
+    color: #FFFFFF;
+
+    font-size: 12px;
+    text-align: center;
+}
+
+/* 色・サイズの表示 */
+.stock-history-variant {
+    margin: 6px 0;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* 変更前 → 変更後 と、増減数を横並びにする */
+.stock-history-quantities {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.stock-history-quantities > div > span {
+    font-size: 11px;
+}
+
+.stock-history-quantities p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.stock-history-quantities small {
+    margin-left: 2px;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+/* 増減数は右側に寄せる */
+.stock-history-change {
+    margin-left: auto;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background-color: #DAE9D6;
+    color: #456B43;
+
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* メモ・注文番号 */
+.stock-history-note {
+    margin-top: 6px;
+    color: #AEAEAE;
+    font-size: 11px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* 入荷：緑 */
+.stock-history-type[data-type="入荷"] {
+    background-color: #5E935B;
+}
+
+.stock-history-change[data-type="入荷"] {
+    background-color: #DAE9D6;
+    color: #456B43;
+}
+
+/* 調整：青 */
+.stock-history-type[data-type="調整"],
+.stock-history-type[data-type="在庫調整"] {
+    background-color: #5B8A93;
+}
+
+.stock-history-change[data-type="調整"],
+.stock-history-change[data-type="在庫調整"] {
+    background-color: #D6E9E9;
+    color: #43686B;
+}
+
+/* 購入：黄色 */
+.stock-history-type[data-type="購入"],
+.stock-history-type[data-type="商品購入"] {
+    background-color: #43686B;
+}
+
+.stock-history-change[data-type="購入"],
+.stock-history-change[data-type="商品購入"] {
+    background-color: #E9E7D6;
+    color: #968645;
+}
+
+/* 商品概要と履歴の間に置く絞り込み欄 */
+.stock-history-filter {
+    margin: 16px 12px 0;
+}
+
+/* 絞り込み欄を本文の左右余白にそろえる */
+.stock-history-filter {
+    margin: 16px 12px 0;
+    font-size: 14px;
+}
+
+.stock-history-filter .c-list-filter {
+    width: 100%;
+}
+
+.stock-history-filter .c-list-filter > summary {
+    justify-content: flex-start;
+    min-height: 36px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.stock-history-filter .c-list-filter > summary > i:last-child {
+    margin-left: auto;
+}
+
+/* 開いた白いパネルも上のボタンと同じ幅 */
+.stock-history-filter .c-list-filter-panel {
+    top: 100%;
+    left: 0;
+    right: auto;
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.stock-history-filter .c-list-filter-panel legend {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.stock-history-filter .c-list-options {
+    gap: 6px;
+}
+
+.stock-history-filter .c-list-options label > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* サイズは「すべて・S・M・L」などを横4列にする */
+.stock-history-filter fieldset:nth-child(2) .c-list-options {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stock-history-filter .c-list-filter-actions > button {
+    min-height: 36px;
+    font-size: 12px;
+}
+
+.stock-history-filter .c-list-year-month {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 6px;
+}
+
+.stock-history-filter .c-list-year-month > button,
+.stock-history-filter .c-list-year-month > select {
+    width: 100%;
+    min-width: 0;
+    height: 32px;
+    margin: 0;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f7f6f3;
+    color: #333;
+    font: inherit;
+    font-size: 12px;
+    text-align: center;
+}
+
+.stock-history-filter .c-list-date-clear.is-selected {
+    border-color: #5e935b;
+    background: #dcebd8;
+    color: #5e935b;
+}

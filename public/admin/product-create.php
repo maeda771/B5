@@ -25,6 +25,8 @@ require __DIR__ . '/../../app/admin/product-create-data.php';
 <script src="../js/product-create.js" defer></script>
 <script src="../js/product-create-image.js" defer></script>
 <script src="../js/product-create-color.js" defer></script>
+<script src="../js/color-label.js" defer></script>
+<script src="../js/product-create-selection.js" defer></script>
     <title>商品登録画面</title>
 </head>
 <body class="has-header product-create-body">
