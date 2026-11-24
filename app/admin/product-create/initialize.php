@@ -1,6 +1,7 @@
 <?php
 // 商品登録画面フォームの初期値と選択肢を用意し、DBからカラーを取得
-$categories = ['トップス', 'ボトムス', 'アウター', 'シューズ', 'その他・小物'];
+require_once __DIR__ . '/../../products/options.php';
+$categories = getProductCategories();
 $sizes = ['S', 'M', 'L', 'LL', 'F'];
 $errors = [];
 $productName = '';

@@ -30,15 +30,88 @@
 /* 並び替えと絞り込み。片方だけの場合も残った部品が幅を使う。 */
 .c-list-controls { display: flex; align-items: flex-start; gap: 12px; margin-top: 14px; }
 .c-list-controls > * { flex: 1; min-width: 0; }
-.c-list-sort { position: relative; }
-.c-list-sort > select {
-    display: block; appearance: none; width: 100%; min-height: 36px; padding: 7px 26px 7px 10px;
-    border: 1px solid #DEDBD6; border-radius: 20px; background-color: #FFFFFF;
-    color: #121212; font: inherit; font-weight: 600; text-align: center; cursor: pointer;
+/* 並べ替えの開閉ボタン */
+.c-list-sort {
+    position: relative;
+    min-width: 0;
 }
-.c-list-sort > i {
-    position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
-    color: #66625D; font-size: 10px; pointer-events: none;
+
+.c-list-sort > summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-height: 36px;
+    padding: 7px 12px;
+
+    border: 1px solid #DEDBD6;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    color: #121212;
+
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.4;
+    list-style: none;
+    cursor: pointer;
+}
+
+.c-list-sort > summary::-webkit-details-marker {
+    display: none;
+}
+
+.c-list-sort > summary i {
+    font-size: 10px;
+}
+
+/* 設計書と同じく、選択肢をボタンの直下に表示 */
+.c-list-sort-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 30;
+
+    width: 100%;
+    overflow: hidden;
+
+    border: 1px solid #DEDBD6;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 白背景の選択肢を縦に並べる */
+.c-list-sort-options > button {
+    display: block;
+    width: 100%;
+    min-height: 36px;
+    padding: 7px 12px;
+
+    border: none;
+    border-bottom: 1px solid #DEDBD6;
+    border-radius: 0;
+    background-color: #FFFFFF;
+    color: #121212;
+
+    font: inherit;
+    line-height: 1.4;
+    text-align: center;
+    cursor: pointer;
+}
+
+.c-list-sort-options > button:last-child {
+    border-bottom: none;
+}
+
+.c-list-sort-options > button:hover {
+    background-color: #F9F7F3;
+}
+
+.c-list-sort > summary:focus-visible,
+.c-list-sort-options > button:focus-visible {
+    outline: 2px solid #5E935B;
+    outline-offset: -2px;
 }
 .c-list-filter { position: relative; min-width: 0; }
 .c-list-filter > summary {
@@ -62,7 +135,7 @@
 .c-list-options span {
     display: flex; align-items: center; justify-content: center; min-height: 34px; padding: 5px 2px;
     border: 1px solid #DEDBD6; border-radius: 5px; background-color: #F9F7F3;
-    font-size: 11px; font-weight: 600; text-align: center; overflow-wrap: anywhere;
+    font-size: 10px; font-weight: 600; text-align: center; overflow-wrap: anywhere;
 }
 .c-list-options input:checked + span { border-color: #5E935B; background-color: #E2EDDF; color: #5E935B; }
 .c-list-options input:focus-visible + span { outline: 2px solid #121212; outline-offset: 2px; }
@@ -73,7 +146,7 @@
 .c-list-filter-actions { display: flex; gap: 8px; margin-top: 14px; }
 .c-list-filter-actions button {
     min-height: 36px; padding: 7px 8px; border-radius: 5px;
-    font: inherit; font-size: 11px; font-weight: 600; cursor: pointer;
+    font: inherit; font-size:8px; font-weight: 600; cursor: pointer;
 }
 .c-list-reset { flex: 1; border: 1px solid #DEDBD6; background-color: #FFFFFF; color: #121212; }
 .c-list-filter-actions .c-list-button { flex: 2; }
@@ -119,8 +192,98 @@
 .c-list-pagination > .is-disabled { border-color: #B5B5B5; background-color: #B5B5B5; color: #888888; }
 .c-list-pagination i { font-size: 10px; }
 .c-list-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+/* 絞り込みパネルを、上のボタンの幅・位置に合わせる */
+.c-list-filter > .c-list-filter-panel {
+    top: 100%;
+    left: 0;
+    right: auto;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+/* 価格範囲の表示 */
+.c-list-price > p {
+    margin-bottom: 8px;
+    color: #121212;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* 2つのスライダーを重ねて、左右のつまみとして表示 */
+.c-list-price-sliders {
+    position: relative;
+    height: 28px;
+    margin: 0 8px;
+}
+
+/* 共通のレール */
+.c-list-price-sliders::before {
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 0;
+    right: 0;
+
+    height: 6px;
+    border-radius: 3px;
+    background-color: #DEDBD6;
+}
+
+.c-list-price-sliders > input {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* Chrome・Edge・Safariのつまみ */
+.c-list-price-sliders > input::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #5E935B;
+    border-radius: 50%;
+    background-color: #5E935B;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Firefoxのつまみ */
+.c-list-price-sliders > input::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #5E935B;
+    border-radius: 50%;
+    background-color: #5E935B;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* 下限から上限までの範囲を緑にする */
+.c-list-price-sliders::before {
+    background: linear-gradient(
+        to right,
+        #DEDBD6 0%,
+        #DEDBD6 var(--price-min, 0%),
+        #5E935B var(--price-min, 0%),
+        #5E935B var(--price-max, 100%),
+        #DEDBD6 var(--price-max, 100%),
+        #DEDBD6 100%
+    );
+}
 
 @media (min-width: 768px) {
+    .c-list-options span {
+        font-size: 14px;
+    }
     .c-list-page { padding: 24px 32px; font-size: 16px; }
     .c-list-controls { gap: 20px; }
     .c-list-sort > select, .c-list-filter > summary { min-height: 40px; }
@@ -130,4 +293,7 @@
     .c-list-table input[type="checkbox"] { width: 18px; height: 18px; }
     .c-list-detail { min-height: 36px; font-size: 16px; }
     .c-list-pagination > a, .c-list-pagination > span { min-width: 38px; height: 40px; }
+    .c-list-filter-actions button {
+        font-size: 15px;
+    }
 }

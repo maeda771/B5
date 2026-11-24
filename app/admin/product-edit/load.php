@@ -2,7 +2,8 @@
 // URLの商品番号から、編集する商品と総在庫数を取得
 $errors = [];
 $product = null;
-$categories = ['トップス', 'ボトムス', 'アウター', 'シューズ', 'その他・小物'];
+require_once __DIR__ . '/../../products/options.php';
+$categories = getProductCategories();
 $productId = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
 if (!$productId || $productId < 1) {
     http_response_code(404);
