@@ -153,3 +153,22 @@ body{
     color: #FFFFFF;
     font-weight: 700;
 }
+
+/* 選択した色の丸とカラー名 */
+.product-selected-color {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* カラーコードで色を付ける丸 */
+.product-color-dot {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    background-color: #CCCCCC;
+}

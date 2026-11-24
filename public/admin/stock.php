@@ -30,54 +30,14 @@ if ($product === null) {
 }
 
 // 商品の色・サイズ・在庫数を取得する。
-$stmt = $pdo->prepare('
-    SELECT
-        d.color_id,
-        c.color_name,
-        c.color_code,
-        d.size,
-        d.stock_quantity
-    FROM product_details d
-    INNER JOIN colors c ON c.color_id = d.color_id
-    WHERE d.product_id = ?
-    ORDER BY d.color_id
-');
-
-// URLから受け取った商品番号を「?」にあてはめる
-$stmt->execute([$productId]);
-
-// 取得結果を配列に入れる。
-$details = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$details = getProductVariants($pdo, $productId);
 // 色ごとの情報
 $stockColors = [];
-// 商品に登録されているサイズ
-$stockSizes = [];
-
-foreach ($details as $detail) {
-    $colorId = $detail['color_id'];
-    $size = $detail['size'];
-    if (!isset($stockColors[$colorId])) {
-        $stockColors[$colorId] = [
-            'name' => $detail['color_name'],
-            'code' => $detail['color_code'],
-            'stocks' => [],
-        ];
-    }
-    // 色・サイズごとの在庫数を保存
-    $stockColors[$colorId]['stocks'][$size]
-        = $detail['stock_quantity'];
-
-    if (!in_array($size, $stockSizes, true)) {
-        $stockSizes[] = $size;
-    }
-}
+// 色・サイズ別の在庫数
+$stockColors = groupProductVariantsByColor($details);
 
 // サイズをS・M・L・LL・Fの順にそろえる
-$stockSizes = array_values(array_intersect(
-    ['S', 'M', 'L', 'LL', 'F'],
-    $stockSizes
-));
+$stockSizes = getProductSizes($details);
 ?>
 <!DOCTYPE html>
 <html lang="ja">

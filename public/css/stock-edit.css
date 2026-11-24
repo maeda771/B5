@@ -1,0 +1,221 @@
+/* 入力部分の余白 */
+.stock-edit-section {
+    padding: 16px 12px;
+}
+
+.stock-edit-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    color: #66625D;
+    font-size: 16px;
+}
+
+/* 見出しの緑色の番号 */
+.stock-edit-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #5E935B;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.stock-edit-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #66625D;
+    font-size: 13px;
+}
+
+/* カラー選択欄 */
+.stock-edit-picker {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+}
+
+.stock-edit-picker > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    min-height: 36px;
+    padding: 6px 10px;
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #66625D;
+
+    font-size: 14px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.stock-edit-picker > summary::-webkit-details-marker {
+    display: none;
+}
+
+.stock-edit-picker > summary > i {
+    font-size: 10px;
+}
+
+/* 開いた選択肢 */
+.stock-edit-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 30;
+
+    width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.stock-edit-options > button {
+    display: block;
+    width: 100%;
+    min-height: 36px;
+    padding: 6px 10px;
+
+    border: none;
+    border-bottom: 1px solid #DEDBD6;
+    background-color: #FFFFFF;
+    color: #66625D;
+
+    font: inherit;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.stock-edit-options > button:last-child {
+    border-bottom: none;
+}
+
+.stock-edit-options > button:hover {
+    background-color: #F9F7F3;
+}
+
+/* PHPで表示している選択肢内の色と名前 */
+.stock-edit-choice-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stock-edit-color-dot {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+}
+
+/* カラーを広め、サイズを狭めに横並びで配置 */
+.stock-edit-variants {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 16px;
+}
+
+.stock-edit-variants > div {
+    min-width: 0;
+}
+
+/* −・数量・＋を横並びにする */
+.stock-edit-quantity {
+    display: inline-flex;
+    align-items: stretch;
+    overflow: hidden;
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.stock-edit-quantity button,
+.stock-edit-quantity input {
+    height: 36px;
+    border: none;
+    background-color: #FFFFFF;
+    color: #66625D;
+
+    font-family: inherit;
+    font-size: 16px;
+    text-align: center;
+}
+
+.stock-edit-quantity button {
+    width: 36px;
+    cursor: pointer;
+}
+
+.stock-edit-quantity input {
+    width: 64px;
+    min-width: 0;
+    padding: 0 4px;
+    border-right: 1px solid #DEDBD6;
+    border-left: 1px solid #DEDBD6;
+    appearance: textfield;
+}
+
+/* 数値入力欄に標準で付く上下矢印を非表示にする */
+.stock-edit-quantity input::-webkit-inner-spin-button,
+.stock-edit-quantity input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+/* 変更理由の選択欄 */
+.stock-edit-reason {
+    width: 140px;
+    max-width: 100%;
+    min-height: 36px;
+    padding: 6px 10px;
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #66625D;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.stock-edit-memo-label {
+    margin-top: 12px;
+}
+
+/* 共通の入力欄スタイルを使い、高さなどだけ調整 */
+.stock-edit-section .stock-edit-memo {
+    display: block;
+    height: 88px;
+    padding: 10px 12px;
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+/* 共通の緑ボタンを使い、余白とサイズだけ調整 */
+.stock-edit-submit {
+    min-height: 48px;
+    margin: 24px auto;
+    font-size: 20px;
+    cursor: pointer;
+}

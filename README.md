@@ -129,13 +129,13 @@
 
 ### 14. 在庫管理（管理者）
 
-担当者：未定
+担当者：前田
 
 | 画面ID | 画面名 | パス | 画面URL | 進捗 |
 | --- | --- | --- | --- | --- |
-| A07 | 在庫管理画面 | [public/admin/stock.php](public/admin/stock.php) | [開く](http://localhost/B5/public/admin/stock.php) | 未着手 |
-| A08 | 在庫変更画面 | [public/admin/stock-edit.php](public/admin/stock-edit.php) | [開く](http://localhost/B5/public/admin/stock-edit.php) | 未着手 |
-| A09 | 在庫変動履歴画面 | [public/admin/stock-history.php](public/admin/stock-history.php) | [開く](http://localhost/B5/public/admin/stock-history.php) | 未着手 |
+| A07 | 在庫管理画面 | [public/admin/stock.php](public/admin/stock.php) | [開く](http://localhost/B5/public/admin/stock.php) | 完了 |
+| A08 | 在庫変更画面 | [public/admin/stock-edit.php](public/admin/stock-edit.php) | [開く](http://localhost/B5/public/admin/stock-edit.php) | 完了 |
+| A09 | 在庫変動履歴画面 | [public/admin/stock-history.php](public/admin/stock-history.php) | [開く](http://localhost/B5/public/admin/stock-history.php) | 完了 |
 
 ### 15. 注文管理（管理者）
 

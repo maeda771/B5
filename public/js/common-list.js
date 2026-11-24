@@ -152,3 +152,37 @@
         updatePrice();
     });
 })();
+
+// 変動日の「指定なし」と年月の選択を連動
+document.querySelectorAll('.c-list-year-month').forEach(container => {
+    const clearButton = container.querySelector('[data-list-date-clear]');
+    const selects = [...container.querySelectorAll('select')];
+
+    function updateDateSelection() {
+        const hasDate = selects.some(select => select.value !== '');
+        clearButton.classList.toggle('is-selected', !hasDate);
+    }
+
+    clearButton.addEventListener('click', () => {
+        selects.forEach(select => {
+            select.value = '';
+        });
+        updateDateSelection();
+    });
+
+    selects.forEach(select => {
+        select.addEventListener('change', updateDateSelection);
+    });
+
+    // 絞り込み全体をリセットした後も、緑の表示を戻す。
+    container.closest('[data-list-filter]')
+        ?.querySelector('[data-list-reset]')
+        ?.addEventListener('click', () => {
+            selects.forEach(select => {
+                select.value = '';
+            });
+            updateDateSelection();
+        });
+
+    updateDateSelection();
+});
