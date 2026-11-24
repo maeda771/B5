@@ -32,6 +32,40 @@ function renderListFilter(array $groups): void
                                 </label>
                             <?php endforeach; ?>
                         </div>
+                                        <?php elseif ($type === 'price'): ?>
+                        <!-- 価格の下限・上限を2つのつまみで指定 -->
+                        <div class="c-list-price" data-price-range>
+                            <p data-price-label>
+                                ¥<?= number_format($group['min']) ?>
+                                〜
+                                ¥<?= number_format($group['max']) ?>
+                            </p>
+
+                            <div class="c-list-price-sliders">
+                                <input
+                                    type="range"
+                                    name="min_price"
+                                    min="0"
+                                    max="100000"
+                                    step="1"
+                                    value="<?= (int) $group['min'] ?>"
+                                    data-list-default="0"
+                                    data-price-min
+                                    aria-label="価格の下限"
+                                >
+                                <input
+                                    type="range"
+                                    name="max_price"
+                                    min="0"
+                                    max="100000"
+                                    step="1"
+                                    value="<?= (int) $group['max'] ?>"
+                                    data-list-default="100000"
+                                    data-price-max
+                                    aria-label="価格の上限"
+                                >
+                            </div>
+                        </div>
                     <?php elseif ($type === 'select'): ?>
                         <select name="<?= listEscape($name) ?>" data-list-default="<?= listEscape($default) ?>">
                             <?php foreach ($group['options'] as $value => $label): ?>

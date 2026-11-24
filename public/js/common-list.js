@@ -7,8 +7,13 @@
         // 同じスクリプトが重複して読み込まれた場合の二重登録を防ぐ。
         if (form.dataset.listReady) return;
         form.dataset.listReady = '1';
-        form.querySelectorAll('[data-list-sort]').forEach((sort) => {
-            sort.addEventListener('change', () => form.requestSubmit());
+        // 並べ替えを押した場合だけ、送信する並び順を更新する。
+        form.addEventListener('submit', event => {
+            const button = event.submitter;
+
+            if (button?.matches('[data-list-sort-choice]')) {
+                form.querySelector('[data-list-sort-value]').value = button.value;
+            }
         });
         form.querySelectorAll('[data-list-filter]').forEach((filter) => {
             filter.querySelector('[data-list-reset]')?.addEventListener('click', () => {
@@ -20,9 +25,6 @@
                         input.value = input.dataset.listDefault ?? '';
                     }
                 });
-            });
-            document.addEventListener('click', (event) => {
-                if (!filter.contains(event.target)) filter.open = false;
             });
             filter.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && filter.open) {
@@ -66,5 +68,87 @@
         orientation.addEventListener('change', scheduleUpdate);
         main.addEventListener('focusout', scheduleUpdate);
         updatePageSize();
+    });
+})();
+// 並べ替え・絞り込みの開閉をそろえる。
+(() => {
+    const menus = [
+        ...document.querySelectorAll(
+            '[data-list-sort-menu], [data-list-filter]'
+        )
+    ];
+
+    menus.forEach(menu => {
+        // 一方を開いたら、もう一方を閉じる。
+        menu.addEventListener('toggle', () => {
+            if (!menu.open) return;
+
+            menus.forEach(other => {
+                if (other !== menu) other.open = false;
+            });
+        });
+    });
+
+    // メニューの外側を押したら閉じる。
+    document.addEventListener('click', event => {
+        menus.forEach(menu => {
+            if (!menu.contains(event.target)) {
+                menu.open = false;
+            }
+        });
+    });
+})();
+
+// 価格スライダーの数値表示を更新する。
+(() => {
+    document.querySelectorAll('[data-price-range]').forEach(range => {
+        const min = range.querySelector('[data-price-min]');
+        const max = range.querySelector('[data-price-max]');
+        const label = range.querySelector('[data-price-label]');
+
+        function updatePrice(event) {
+            // 下限と上限のつまみが逆転しないようにする。
+            if (Number(min.value) > Number(max.value)) {
+                if (event?.target === min) {
+                    min.value = max.value;
+                } else {
+                    max.value = min.value;
+                }
+            }
+
+            label.textContent =
+                `¥${Number(min.value).toLocaleString('ja-JP')}`
+                + ' 〜 '
+                + `¥${Number(max.value).toLocaleString('ja-JP')}`;
+
+            // 選択中の価格範囲を、レールの緑色に反映する。
+            const sliders = range.querySelector('.c-list-price-sliders');
+            const lowerLimit = Number(min.min);
+            const upperLimit = Number(min.max);
+            const width = upperLimit - lowerLimit;
+
+            sliders.style.setProperty(
+                '--price-min',
+                `${(Number(min.value) - lowerLimit) / width * 100}%`
+            );
+            sliders.style.setProperty(
+                '--price-max',
+                `${(Number(max.value) - lowerLimit) / width * 100}%`
+            );
+            // 両方が右端で重なっても、下限のつまみを戻せるようにする。
+            min.style.zIndex = Number(min.value) === Number(min.max)
+                ? '2'
+                : '0';
+        }
+
+        min.addEventListener('input', updatePrice);
+        max.addEventListener('input', updatePrice);
+
+        // 既存のリセット処理で値が戻った後、表示も更新する。
+        range.closest('[data-list-filter]')
+            .querySelector('[data-list-reset]')
+            ?.addEventListener('click', () => updatePrice());
+
+        updatePrice();
     });
 })();
