@@ -5,7 +5,7 @@ START TRANSACTION;
 INSERT INTO products
     (product_id, product_name, category, product_price, description, image, created_at)
 VALUES
-    (1, '綿の長袖シャツ', 'トップス', 1980, '柔らかい綿素材の長袖シャツです。', 'images/products/test-shirt.png', '2026-11-01'),
+    (1, '綿の長袖シャツ', 'トップス', 1980, '柔らかい綿素材の長袖シャツです。', 'images/products/test-shirt.png', '2025-11-01'),
     (2, '前開きカーディガン', 'トップス', 2980, '羽織りやすい前開きのカーディガンです。', 'images/products/test-shirt.png', '2026-11-03'),
     (3, 'ウエストゴムのパンツ', 'ボトムス', 2480, 'ウエストがゴムで着脱しやすいパンツです。', 'images/products/test-shirt.png', '2026-11-05'),
     (4, '軽量ジャケット', 'アウター', 4980, '軽くて外出時に羽織りやすいジャケットです。', 'images/products/test-shirt.png', '2026-11-07'),
@@ -92,5 +92,143 @@ VALUES
 -- 管理者     admin@example.test  / pass1234
 INSERT INTO admins (name, email, password_hash)
 VALUES ('テスト管理者', 'admin@example.test', '$2y$12$Fg5UBufvxJ54fwsVk0eMzOu7rRQ8YkaIOjFAJMffj1UxH8jMB9i9W');
+
+
+
+-- 各商品にすでにある色とサイズの組み合わせを補完する。
+-- 既存の在庫数は維持し、足りない組み合わせには5点入れる。
+INSERT INTO product_details (product_id, color_id, size, stock_quantity)
+SELECT product_colors.product_id, product_colors.color_id, product_sizes.size, 5
+FROM (SELECT DISTINCT product_id, color_id FROM product_details) AS product_colors
+INNER JOIN (SELECT DISTINCT product_id, size FROM product_details) AS product_sizes
+    ON product_sizes.product_id = product_colors.product_id
+LEFT JOIN product_details
+    ON product_details.product_id = product_colors.product_id
+    AND product_details.color_id = product_colors.color_id
+    AND product_details.size = product_sizes.size
+WHERE product_details.product_details_id IS NULL;
+
+-- 注文テスト5件。商品1は前年の注文に合わせ、登録日を2025年にしている。
+SET @seed_member_id = (SELECT member_id FROM members WHERE email = 'member@example.test');
+
+-- テスト注文1
+SET @seed_variant_id = (SELECT product_details_id FROM product_details
+    WHERE product_id = 1 AND color_id = 2 AND size = 'M');
+SET @seed_price = (SELECT product_price FROM products WHERE product_id = 1);
+SET @seed_stock_before = (SELECT stock_quantity FROM product_details
+    WHERE product_details_id = @seed_variant_id);
+
+INSERT INTO orders (member_id, order_datetime, billing_amount, order_status,
+    shipping_postal_code, shipping_address, shipping_building_name)
+VALUES (@seed_member_id, '2025-12-10 11:20:00', @seed_price * 2, '発送済み',
+    '8100022', '福岡県福岡市中央区薬院5-5-5', NULL);
+SET @seed_order_id = LAST_INSERT_ID();
+
+INSERT INTO order_details (order_id, product_details_id, quantity, unit_price)
+VALUES (@seed_order_id, @seed_variant_id, 2, @seed_price);
+
+-- 購入による在庫減少と履歴も、初期データとして登録する。
+UPDATE product_details SET stock_quantity = stock_quantity - 2
+WHERE product_details_id = @seed_variant_id;
+INSERT INTO inventory_change_logs (product_details_id, change_type,
+    quantity_before, quantity_after, quantity_change, memo, order_id, created_at)
+VALUES (@seed_variant_id, '購入', @seed_stock_before,
+    @seed_stock_before - 2, -2, 'テスト注文による購入', @seed_order_id, '2025-12-10 11:20:00');
+
+-- テスト注文2
+SET @seed_variant_id = (SELECT product_details_id FROM product_details
+    WHERE product_id = 1 AND color_id = 2 AND size = 'S');
+SET @seed_price = (SELECT product_price FROM products WHERE product_id = 1);
+SET @seed_stock_before = (SELECT stock_quantity FROM product_details
+    WHERE product_details_id = @seed_variant_id);
+
+INSERT INTO orders (member_id, order_datetime, billing_amount, order_status,
+    shipping_postal_code, shipping_address, shipping_building_name)
+VALUES (@seed_member_id, '2026-09-08 18:45:00', @seed_price * 3, '発送済み',
+    '1500002', '東京都渋谷区渋谷4-4-4', 'テストビル303号室');
+SET @seed_order_id = LAST_INSERT_ID();
+
+INSERT INTO order_details (order_id, product_details_id, quantity, unit_price)
+VALUES (@seed_order_id, @seed_variant_id, 3, @seed_price);
+
+-- 購入による在庫減少と履歴も、初期データとして登録する。
+UPDATE product_details SET stock_quantity = stock_quantity - 3
+WHERE product_details_id = @seed_variant_id;
+INSERT INTO inventory_change_logs (product_details_id, change_type,
+    quantity_before, quantity_after, quantity_change, memo, order_id, created_at)
+VALUES (@seed_variant_id, '購入', @seed_stock_before,
+    @seed_stock_before - 3, -3, 'テスト注文による購入', @seed_order_id, '2026-09-08 18:45:00');
+
+-- テスト注文3
+SET @seed_variant_id = (SELECT product_details_id FROM product_details
+    WHERE product_id = 1 AND color_id = 1 AND size = 'L');
+SET @seed_price = (SELECT product_price FROM products WHERE product_id = 1);
+SET @seed_stock_before = (SELECT stock_quantity FROM product_details
+    WHERE product_details_id = @seed_variant_id);
+
+INSERT INTO orders (member_id, order_datetime, billing_amount, order_status,
+    shipping_postal_code, shipping_address, shipping_building_name)
+VALUES (@seed_member_id, '2026-10-15 09:15:00', @seed_price * 1, '発送済み',
+    '8120011', '福岡県福岡市博多区博多駅前3-3-3', NULL);
+SET @seed_order_id = LAST_INSERT_ID();
+
+INSERT INTO order_details (order_id, product_details_id, quantity, unit_price)
+VALUES (@seed_order_id, @seed_variant_id, 1, @seed_price);
+
+-- 購入による在庫減少と履歴も、初期データとして登録する。
+UPDATE product_details SET stock_quantity = stock_quantity - 1
+WHERE product_details_id = @seed_variant_id;
+INSERT INTO inventory_change_logs (product_details_id, change_type,
+    quantity_before, quantity_after, quantity_change, memo, order_id, created_at)
+VALUES (@seed_variant_id, '購入', @seed_stock_before,
+    @seed_stock_before - 1, -1, 'テスト注文による購入', @seed_order_id, '2026-10-15 09:15:00');
+
+-- テスト注文4
+SET @seed_variant_id = (SELECT product_details_id FROM product_details
+    WHERE product_id = 1 AND color_id = 1 AND size = 'M');
+SET @seed_price = (SELECT product_price FROM products WHERE product_id = 1);
+SET @seed_stock_before = (SELECT stock_quantity FROM product_details
+    WHERE product_details_id = @seed_variant_id);
+
+INSERT INTO orders (member_id, order_datetime, billing_amount, order_status,
+    shipping_postal_code, shipping_address, shipping_building_name)
+VALUES (@seed_member_id, '2026-11-20 14:30:00', @seed_price * 2, '発送準備中',
+    '1600022', '東京都新宿区新宿2-2-2', 'サンプルハイツ202号室');
+SET @seed_order_id = LAST_INSERT_ID();
+
+INSERT INTO order_details (order_id, product_details_id, quantity, unit_price)
+VALUES (@seed_order_id, @seed_variant_id, 2, @seed_price);
+
+-- 購入による在庫減少と履歴も、初期データとして登録する。
+UPDATE product_details SET stock_quantity = stock_quantity - 2
+WHERE product_details_id = @seed_variant_id;
+INSERT INTO inventory_change_logs (product_details_id, change_type,
+    quantity_before, quantity_after, quantity_change, memo, order_id, created_at)
+VALUES (@seed_variant_id, '購入', @seed_stock_before,
+    @seed_stock_before - 2, -2, 'テスト注文による購入', @seed_order_id, '2026-11-20 14:30:00');
+
+-- テスト注文5
+SET @seed_variant_id = (SELECT product_details_id FROM product_details
+    WHERE product_id = 1 AND color_id = 1 AND size = 'S');
+SET @seed_price = (SELECT product_price FROM products WHERE product_id = 1);
+SET @seed_stock_before = (SELECT stock_quantity FROM product_details
+    WHERE product_details_id = @seed_variant_id);
+
+INSERT INTO orders (member_id, order_datetime, billing_amount, order_status,
+    shipping_postal_code, shipping_address, shipping_building_name)
+VALUES (@seed_member_id, '2026-11-25 10:00:00', @seed_price * 1, '注文受付',
+    '8100001', '福岡県福岡市中央区天神1-1-1', 'テストマンション101号室');
+SET @seed_order_id = LAST_INSERT_ID();
+
+INSERT INTO order_details (order_id, product_details_id, quantity, unit_price)
+VALUES (@seed_order_id, @seed_variant_id, 1, @seed_price);
+
+-- 購入による在庫減少と履歴も、初期データとして登録する。
+UPDATE product_details SET stock_quantity = stock_quantity - 1
+WHERE product_details_id = @seed_variant_id;
+INSERT INTO inventory_change_logs (product_details_id, change_type,
+    quantity_before, quantity_after, quantity_change, memo, order_id, created_at)
+VALUES (@seed_variant_id, '購入', @seed_stock_before,
+    @seed_stock_before - 1, -1, 'テスト注文による購入', @seed_order_id, '2026-11-25 10:00:00');
 
 COMMIT;

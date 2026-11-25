@@ -297,3 +297,33 @@
         font-size: 15px;
     }
 }
+
+
+/* 年月での絞り込み */
+.c-list-year-month {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 6px;
+}
+
+.c-list-year-month > button,
+.c-list-year-month > select {
+    width: 100%;
+    min-width: 0;
+    height: 32px;
+    margin: 0;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f7f6f3;
+    color: #333;
+    font: inherit;
+    font-size: 12px;
+    text-align: center;
+}
+
+.c-list-date-clear.is-selected {
+    border-color: #5e935b;
+    background: #dcebd8;
+    color: #5e935b;
+}
