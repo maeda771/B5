@@ -37,7 +37,16 @@ function renderListTable(array $columns, array $rows, array $config = []): void
                             elseif ($format === 'number') $value = number_format((int) $value);
                             elseif (is_callable($format)) $value = $format($value, $row);
                             ?>
-                            <td class="<?= listEscape($column['class'] ?? '') ?>"><?= listEscape($value) ?></td>
+                            <td class="<?= listEscape($column['class'] ?? '') ?>">
+                                <?php if ($column['badge'] ?? false): ?>
+                                    <span class="c-list-badge"
+                                        data-value="<?= listEscape($value) ?>">
+                                        <?= listEscape($value) ?>
+                                    </span>
+                                <?php else: ?>
+                                    <?= listEscape($value) ?>
+                                <?php endif; ?>
+                            </td>
                         <?php endforeach; ?>
                         <?php if ($detail !== null): ?>
                             <td><a class="c-list-detail" href="<?= listEscape($detail($row)) ?>"><i class="fas fa-chevron-right"></i></a></td>

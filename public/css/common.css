@@ -4,6 +4,10 @@
 
 /* ヘッダー・フッター用の共通スタイルを読み込む */
 @import url("./layouts.css");
+/* 管理者注文管理共通スタイルを読み込み */
+@import url("./order-status.css");
+/* 管理者詳細画面用の共通スタイルを読み込む */
+@import url("./common-detail.css");
 
 *{
     margin: 0;

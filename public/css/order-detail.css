@@ -1,0 +1,63 @@
+/* 注文商品の表 */
+.order-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #808080;
+    font-size: 14px;
+}
+
+.order-detail-table th,
+.order-detail-table td {
+    padding: 10px 4px;
+    border-bottom: 1px solid #CBCAC8;
+    text-align: center;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+
+.order-detail-table th {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 商品番号 */
+.order-detail-table th:nth-child(1) {
+    width: 21%;
+}
+
+/* 数量 */
+.order-detail-table th:nth-child(2) {
+    width: 12%;
+}
+
+/* 金額 */
+.order-detail-table th:nth-child(3) {
+    width: 27%;
+}
+
+/* サイズ */
+.order-detail-table th:nth-child(4) {
+    width: 16%;
+}
+
+/* カラー */
+.order-detail-table th:nth-child(5) {
+    width: 24%;
+}
+
+/* 商品金額の合計 */
+.order-detail-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 8px 0;
+    color: #66625D;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.order-detail-total strong {
+    font-size: 22px;
+}

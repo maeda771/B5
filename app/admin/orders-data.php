@@ -190,15 +190,28 @@ return (static function (PDO $pdo): array {
                 'label' => '金額',
                 'format' => 'yen',
             ],
-            ['key' => 'order_status', 'label' => '状態'],
+            [
+                'key' => 'order_status',
+                'label' => '状態',
+                'badge' => true,
+            ],
         ],
 
         // 各注文の詳細画面へのリンク
         'table' => [
             'idKey' => 'order_id',
-            'detail' => static function (array $row): string {
+            'detail' => static function (array $row) use (
+                $keyword, $sort, $status, $year, $month, $page, $perPage
+            ): string {
                 return 'order.php?' . http_build_query([
                     'order_id' => (int) $row['order_id'],
+                    'return_keyword' => $keyword,
+                    'return_sort' => $sort,
+                    'return_status' => $status,
+                    'return_year' => $year,
+                    'return_month' => $month,
+                    'return_page' => $page,
+                    'return_per_page' => $perPage,
                 ]);
             },
             'empty' => '条件に一致する注文はありません。',
