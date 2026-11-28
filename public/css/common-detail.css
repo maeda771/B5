@@ -24,7 +24,7 @@
     padding: 0 0 7px;
     border-bottom: 2px solid #CBCAC8;
     color: #66625D;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -50,4 +50,27 @@
 /* 変更フォーム */
 .c-detail-info form {
     margin: 0;
+}
+
+/* 注文商品・会員の注文履歴で共通の表 */
+.c-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #808080;
+    font-size: 14px;
+}
+
+.c-detail-table th,
+.c-detail-table td {
+    padding: 10px 4px;
+    border-bottom: 1px solid #CBCAC8;
+    text-align: center;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+
+.c-detail-table th {
+    font-size: 13px;
+    font-weight: 600;
 }

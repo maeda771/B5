@@ -57,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/common-list.css">
     <link rel="stylesheet" href="../css/order-detail.css">
     <script src="../js/order-detail.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -148,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <dl class="c-detail-info">
                 <dt>会員氏名</dt>
-                <dd class="c-detail-name">
+                <dd>
                     <?= htmlspecialchars(
                         $order['member_name'], ENT_QUOTES, 'UTF-8'
                     ) ?>
@@ -176,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="c-detail-section">
             <h2>注文商品</h2>
 
-            <table class="order-detail-table">
+            <table class="c-detail-table order-detail-table">
                 <thead>
                     <tr>
                         <th scope="col">商品番号</th>
