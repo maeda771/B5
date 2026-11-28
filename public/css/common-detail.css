@@ -1,0 +1,53 @@
+/* 管理者側の注文・会員詳細画面の共通レイアウト */
+.c-detail-page {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+    box-sizing: border-box;
+    color: #808080;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.c-detail-page * {
+    box-sizing: border-box;
+}
+
+.c-detail-section + .c-detail-section {
+    margin-top: 32px;
+}
+
+/* 見出し */
+.c-detail-section h2 {
+    margin: 0 0 16px;
+    padding: 0 0 7px;
+    border-bottom: 2px solid #CBCAC8;
+    color: #66625D;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* 項目名と値 */
+.c-detail-info {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px 14px;
+    margin: 0;
+}
+
+.c-detail-info dt,
+.c-detail-info dd {
+    margin: 0;
+}
+
+.c-detail-info dd {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* 変更フォーム */
+.c-detail-info form {
+    margin: 0;
+}
