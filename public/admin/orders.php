@@ -64,9 +64,9 @@ $list = require __DIR__ . '/../../app/admin/orders-data.php';
             <?php
             renderListSearch(
                 $list['controls']['search']['value'],
-                '注文番号・会員IDで検索',
+                '注文番号・会員番号で検索',
                 'keyword',
-                '注文番号・会員IDで検索'
+                '注文番号・会員番号で検索'
             );
             ?>
 
